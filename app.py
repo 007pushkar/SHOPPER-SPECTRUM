@@ -5,7 +5,7 @@ import joblib
 # Load models
 kmeans_model = joblib.load("kmeans_model.pkl")
 scaler = joblib.load("scaler.pkl")
-similarity_df = joblib.load("product_similarity.pkl")
+recommendations = joblib.load("recommendations.pkl")
 
 # Cluster labels
 cluster_mapping = {
@@ -72,7 +72,7 @@ if option == "Product Recommendation":
         if product_name.strip() == "":
             st.warning("Please enter a product name.")
         else:
-            result = recommend_products(product_name, similarity_df)
+            result = recommend_products(product_name, recommendations)
 
             if result is None:
                 st.error("Product not found. Try another product name.")
