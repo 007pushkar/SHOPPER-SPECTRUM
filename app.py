@@ -38,17 +38,14 @@ option = st.sidebar.selectbox(
 )
 
 # Recommendation Function
-def recommend_products(product_name, similarity_df, top_n=5):
+def recommend_products(product_name, recommendations):
     product_name = product_name.upper()
-    matched_product = None
 
-    for product in similarity_df.index:
+    for product in recommendations.keys():
         if product_name in product.upper():
-            matched_product = product
-            break
+            return product, recommendations[product]
 
-    if matched_product is None:
-        return None
+    return None
 
     recommendations = (
         similarity_df[matched_product]
